@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Опросник</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007bff;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #007bff;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Авторизация</h1>
+    <form id="authForm">
+        <input type="text" id="surname" placeholder="Фамилия" required>
+        <input type="number" id="course" placeholder="Номер курса" required>
+        <button type="submit">Войти</button>
+    </form>
+    <div id="message" class="error"></div>
+</div>
+
+<script>
+    const validUsers = [
+        { surname: "Токмакова", course: 3 },
+        { surname: "Кочесокова", course: 3 },
+        { surname: "Белимготова", course: 3 },
+        { surname: "Калмыкова", course: 3 },
+        { surname: "Хабалов", course: 3 },
+        { surname: "Шуева", course: 3 },
+        { surname: "Хавпачев", course: 3 },
+        { surname: "Ципинов", course: 3 },
+        { surname: "Тишков", course: 3 },
+        { surname: "Биттиров", course: 3 },
+        { surname: "Жанимов", course: 3 },
+        { surname: "Келеметов", course: 3 },
+        { surname: "Шогенов", course: 3 },
+        { surname: "Шарипова", course: 3 },
+        { surname: "Дауров", course: 3 },
+    ];
+
+    document.getElementById('authForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const surname = document.getElementById('surname').value;
+        const course = parseInt(document.getElementById('course').value);
+        const user = validUsers.find(user => user.surname === surname && user.course === course);
+
+        if (user) {
+            
+            window.location.href = 'survey.html'; 
+        } else if {
+          (surname === "Бозиев" && course.toLowerCase() === "5") {
+           
+            window.location.href = "results.html"; 
+        } else {
+            
+            document.getElementById('error').innerText = "Неверная фамилия или курс!";
+        }
+    });
+</script>
+
+</body>
+</html>
+
+
