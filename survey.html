@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -112,6 +113,9 @@
         <div id="result" class="result"></div>
     </form>
 </div>
+<button onclick="goToNextPage()">Далее</button>
+
+
 
 <script>
     document.getElementById('surveyForm').addEventListener('submit', function(event) {
@@ -155,9 +159,14 @@
         document.getElementById('result').textContent = message;
 
        
-    });
+    }
+	  function goToNextPage() {
+    window.location.href = "test.html";
+  }
+	});
 </script>
 
 </body>
 </html>
+
 
