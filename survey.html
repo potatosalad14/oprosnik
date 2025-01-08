@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Опрос</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007bff;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Опрос про процессы обучения студентов 3 курса</h1>
+    <form id="surveyForm">
+        <div class="question">
+            <h2>1. Какой метод обучения данного предмета Вы считаете наиболее эффективным?</h2>
+            <label><input type="radio" name="question1" value="1"> Лекция</label><br>
+            <label><input type="radio" name="question1" value="2"> Практика</label><br>
+            <label><input type="radio" name="question1" value="3"> Оба варианта</label><br>
+            <label><input type="radio" name="question1" value="4"> Никакой</label><br>
+        </div>
+        <div class="question">
+            <h2>2. Насколько Вам нравится формат лекций?</h2>
+            <label><input type="radio" name="question2" value="1"> Очень нравится</label><br>
+            <label><input type="radio" name="question2" value="2"> Нравится</label><br>
+            <label><input type="radio" name="question2" value="3"> Нейтрально</label><br>
+            <label><input type="radio" name="question2" value="4"> Не нравится</label><br>
+        </div>
+        <div class="question">
+            <h2>3. Насколько Вам полезны практические занятия?</h2>
+            <label><input type="radio" name="question3" value="1"> Очень полезны</label><br>
+            <label><input type="radio" name="question3" value="2"> Полезны</label><br>
+            <label><input type="radio" name="question3" value="3"> Нейтрально</label><br>
+            <label><input type="radio" name="question3" value="4"> Бесполезны</label><br>
+        </div>
+        <div class="question">
+            <h2>4. Как Вы оцениваете доступность учебных материалов?</h2>
+            <label><input type="radio" name="question4" value="1"> Отлично</label><br>
+            <label><input type="radio" name="question4" value="2"> Хорошо</label><br>
+            <label><input type="radio" name="question4" value="3"> Удовлетворительно</label><br>
+            <label><input type="radio" name="question4" value="4"> Плохо</label><br>
+        </div>
+        <div class="question">
+            <h2>5. Насколько преподаватель готов отвечать на Ваши вопросы?</h2>
+            <label><input type="radio" name="question5" value="1"> Всегда готов</label><br>
+            <label><input type="radio" name="question5" value="2"> Обычно готов</label><br>
+            <label><input type="radio" name="question5" value="3"> Иногда готов</label><br>
+            <label><input type="radio" name="question5" value="4"> Редко готов</label><br>
+        </div>
+        <div class="question">
+            <h2>6. Как Вы оцениваете атмосферу на лекционных занятиях?</h2>
+            <label><input type="radio" name="question6" value="1"> Позитивная</label><br>
+            <label><input type="radio" name="question6" value="2"> Нейтральная</label><br>
+            <label><input type="radio" name="question6" value="3"> Негативная</label><br>
+        </div>
+        <div class="question">
+            <h2>7. Как Вы оцениваете атмосферу на практических занятиях?</h2>
+            <label><input type="radio" name="question7" value="1"> Позитивная</label><br>
+            <label><input type="radio" name="question7" value="2"> Нейтральная</label><br>
+            <label><input type="radio" name="question7" value="3"> Негативная</label><br>
+        </div>
+        <div class="question">
+            <h2>8. Оцените уровень теоретических знаний по предмету от 1 до 5</h2>
+            <input type="number" name="theoreticalKnowledge" min="1" max="5" required>
+        </div>
+        <div class="question">
+            <h2>9. Оцените уровень практических знаний по предмету от 1 до 5</h2>
+            <input type="number" name="practicalKnowledge" min="1" max="5" required>
+        </div>
+        <div class="question">
+            <h2>10. Оцените работу преподавателя по предмету от 1 до 5</h2>
+            <input type="number" name="teacherEvaluation" min="1" max="5" required>
+        </div>
+
+        <button type="submit">Отправить</button>
+        <div id="result" class="result"></div>
+    </form>
+</div>
+
+<script>
+    document.getElementById('surveyForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const results = {
+            question1: document.querySelector('input[name="question1"]:checked')?.value,
+            question2: document.querySelector('input[name="question2"]:checked')?.value,
+            question3: document.querySelector('input[name="question3"]:checked')?.value,
+            question4: document.querySelector('input[name="question4"]:checked')?.value,
+            question5: document.querySelector('input[name="question5"]:checked')?.value,
+            question6: document.querySelector('input[name="question6"]:checked')?.value,
+            question7: document.querySelector('input[name="question7"]:checked')?.value,
+            theoreticalKnowledge: document.querySelector('input[name="theoreticalKnowledge"]').value,
+            practicalKnowledge: document.querySelector('input[name="practicalKnowledge"]').value,
+            teacherEvaluation: document.querySelector('input[name="teacherEvaluation"]').value,
+        };
+
+      
+        let positiveCount = 0;
+        let negativeCount = 0;
+
+        
+        if (results.question1 <= 3) positiveCount++;
+        if (results.question2 <= 2) positiveCount++;
+        if (results.question3 <= 2) positiveCount++;
+        if (results.question4 <= 2) positiveCount++;
+        if (results.question5 <= 2) positiveCount++;
+        if (results.question6 === '1') positiveCount++;
+        if (results.question7 === '1') positiveCount++;
+
+        negativeCount = 7 - positiveCount; 
+
+        let message = "";
+        if (positiveCount > negativeCount) {
+            message = "В первом опросе студенты выбрали больше положительных ответов, они считают, что Ваш предмет очень полезен.";
+        } else {
+            message = "В первом опросе студенты выбрали больше отрицательных ответов, они считают, что Ваш предмет не очень полезен.";
+        }
+
+        document.getElementById('result').textContent = message;
+
+       
+    });
+</script>
+
+</body>
+</html>
+
