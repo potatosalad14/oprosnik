@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Результаты опросов и тестов</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007bff;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Результаты опросов и тестов</h1>
+    
+    <h2>Опрос о процессе обучения</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Вопрос</th>
+                <th>Ответы</th>
+            </tr>
+        </thead>
+        <tbody id="surveyAnswers">
+            <!-- Результаты опроса будут добавлены здесь через JavaScript -->
+        </tbody>
+    </table>
+
+    <h2>Теоретический тест</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Студент</th>
+                <th>Результат (%)</th>
+                <th>Комментарий</th>
+            </tr>
+        </thead>
+        <tbody id="theoreticalResults">
+            <!-- Результаты теоретического теста будут добавлены здесь через JavaScript -->
+        </tbody>
+    </table>
+
+    <h2>Практический тест</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Студент</th>
+                <th>Результат (%)</th>
+                <th>Комментарий</th>
+            </tr>
+        </thead>
+        <tbody id="practicalTestForm">
+            <!-- Результаты практического теста будут добавлены здесь через JavaScript -->
+        </tbody>
+    </table>
+
+    <h2>Анализ полученных результатов</h2>
+    <div id="analysis">
+        <!-- Анализ результатов будет добавлен здесь через JavaScript -->
+    </div>
+</div>
+
+<script>
+    // Пример данных, которые могут быть получены с сервера
+    const surveyResults = [
+        { question: "Какой метод обучения данного предмета Вы считаете наиболее эффективным?", answers: ["Лекция: 10", "Практика: 15", "Оба варианта: 25", "Никакой: 5"] },
+        { question: "Насколько Вам нравится формат лекций?", answers: ["Очень нравится: 20", "Нравится: 10", "Нейтрально: 5", "Не нравится: 0"] },
+        { question: "Насколько Вам полезны практические занятия?", answers: ["Очень полезны: 15", "Полезны: 20", "Нейтрально: 0", "Бесполезны: 0"] },
+    ];
+
+    const theoreticalResults = [
+        { student: "Иванов И.И.", score: 85, comment: "Хорошие знания теории." },
+        { student: "Петров П.П.", score: 45, comment: "Необходимо улучшить теоретические знания." },
+    ];
+
+    const practicalResults = [
+        { student: "Сидоров С.С.", score: 90, comment: "Отличная работа!" },
+        { student: "Кузнецов К.К.", score: 60, comment: "Нужно больше практики." },
+    ];
+
+    // Функция для отображения результатов опроса
+    function displaySurveyResults() {
+        const surveyResultsTable = document.getElementById('surveyResults');
+        surveyResults.forEach(result => {
+            const row = document.createElement('tr');
+            row.innerHTML = `<td>${result.question}</td><td>${result.answers.join(', ')}</td>`;
+            surveyResultsTable.appendChild(row);
+        });
+    }
+
+    // Функция для отображения результатов теоретического теста
+    function displayTheoreticalResults() {
+        const theoreticalResultsTable = document.getElementById('theoreticalResults');
+        theoreticalResults.forEach(result => {
+            const row = document.createElement('tr');
+            row.innerHTML = `<td>${result.student}</td><td>${result.score}%</td><td>${result.comment}</td>`;
+            theoreticalResultsTable.appendChild(row);
+        });
+    }
+
+    
+    function displayPracticalTestForm() {
+        const practicalResultsTable = document.getElementById('practicalResults');
+        practicalResults.forEach(result => {
+            const row = document.createElement('tr');
+            row.innerHTML = `<td>${result.student}</td><td>${result.score}%</td><td>${result.comment}</td>`;
+            practicalResultsTable.appendChild(row);
+        });
+    }
+
+    
+    function displayAnalysis() {
+        const analysisDiv = document.getElementById('analysis');
+        const totalStudents = theoreticalResults.length + practicalResults.length;
+        const averageTheoreticalScore = theoreticalResults.reduce((sum, result) => sum + result.score, 0) / theoreticalResults.length || 0;
+        const averagePracticalScore = practicalResults.reduce((sum, result) => sum + result.score, 0) / practicalResults.length || 0;
+
+        analysisDiv.innerHTML = `
+            <p>Общее количество студентов: ${totalStudents}</p>
+            <p>Средний балл теоретического теста: ${averageTheoreticalScore.toFixed(2)}%</p>
+            <p>Средний балл практического теста: ${averagePracticalScore.toFixed(2)}%</p>
+        `;
+    }
+
+    
+    displaySurveyResults();
+    displayTheoreticalResults();
+    displayPracticalResults();
+    displayAnalysis();
+</script>
+
+</body>
+</html>
+
