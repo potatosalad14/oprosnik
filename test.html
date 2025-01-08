@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Теоретический тест</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007bff;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Теоретический тест</h1>
+    <form id="theoreticalTestForm">
+        <div class="question">
+            <h2>1. Что такое анализ?</h2>
+            <label><input type="radio" name="question1" value="a"> Метод интуитивного познания</label><br>
+            <label><input type="radio" name="question1" value="b"> Метод научного исследования, состоящий в фактическом или мысленном разложении целого на составные части</label><br>
+            <label><input type="radio" name="question1" value="c"> Метод объединения разрозненных элементов в единое целое</label><br>
+            <label><input type="radio" name="question1" value="d"> Способ описания явления без его изучения</label><br>
+        </div>
+        <div class="question">
+            <h2>2. Что такое синтез?</h2>
+            <label><input type="radio" name="question2" value="a"> Метод разделения целого на части</label><br>
+            <label><input type="radio" name="question2" value="b"> Метод научного исследования некоторого процесса, явления или системы, состоящий в познании его как единого целого в единстве и взаимной связи его частей</label><br>
+            <label><input type="radio" name="question2" value="c"> Процесс абстрагирования от реальности</label><br>
+            <label><input type="radio" name="question2" value="d"> Способ запоминания информации</label><br>
+        </div>
+        <div class="question">
+            <h2>3. На какие основные категории подразделяются системы?</h2>
+            <label><input type="radio" name="question3" value="a"> Простые и сложные</label><br>
+            <label><input type="radio" name="question3" value="b"> Большие и малые</label><br>
+            <label><input type="radio" name="question3" value="c"> Материальные и Абстрактные</label><br>
+            <label><input type="radio" name="question3" value="d"> Открытые и закрытые</label><br>
+        </div>
+        <div class="question">
+            <h2>4. Метод мышления, следствием которого является логический вывод, где частное заключение выводится из общего - это...</h2>
+            <label><input type="radio" name="question4" value="a"> Индукция</label><br>
+            <label><input type="radio" name="question4" value="b"> Аналогия</label><br>
+            <label><input type="radio" name="question4" value="c"> Дедукция</label><br>
+            <label><input type="radio" name="question4" value="d"> Абстракция</label><br>
+        </div>
+        <div class="question">
+            <h2>5. Какие типы противоречий существуют в системах?</h2>
+            <label><input type="checkbox" name="question5" value="a"> Внутренние</label><br>
+            <label><input type="checkbox" name="question5" value="b"> Острые</label><br>
+            <label><input type="checkbox" name="question5" value="c"> Равновесные</label><br>
+            <label><input type="checkbox" name="question5" value="d"> Скрытые</label><br>
+            <label><input type="checkbox" name="question5" value="e"> Позитивные</label><br>
+            <label><input type="checkbox" name="question5" value="f"> Негативные</label><br>
+            <label><input type="checkbox" name="question5" value="g"> Опосредованные</label><br>
+        </div>
+        <div class="question">
+            <h2>6. Все системы по своему внутреннему устройству подчинены закону:</h2>
+            <label><input type="radio" name="question6" value="a"> Энергии</label><br>
+            <label><input type="radio" name="question6" value="b"> Субординации</label><br>
+            <label><input type="radio" name="question6" value="c"> Иерархии</label><br>
+            <label><input type="radio" name="question6" value="d"> Развития</label><br>
+        </div>
+        <div class="question">
+            <h2>7. Состояние системы - это...</h2>
+            <label><input type="radio" name="question7" value="a"> Фаза изменения системы</label><br>
+            <label><input type="radio" name="question7" value="b"> Набор основных параметров, определяющих характер её функционирования на определённом временном интервале</label><br>
+            <label><input type="radio" name="question7" value="c"> Набор элементов системы</label><br>
+            <label><input type="radio" name="question7" value="d"> Описание внешней среды системы</label><br>
+        </div>
+
+        <button type="submit">Отправить</button>
+        <div id="theoreticalResult" class="result"></div>
+    </form>
+</div>
+  <div id="theoreticalResult" class="result"></div>
+<script>
+    document.getElementById('theoreticalTestForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const correctAnswers = {
+            question1: 'b',
+            question2: 'b',
+            question3: 'c',
+            question4: 'c',
+             question5: ['b', 'c','d','e','g'],
+            question6: 'b',
+            question7: 'b'
+        };
+
+        let score = 0;
+        let totalQuestions = 7;
+
+        if (document.querySelector('input[name="question1"]:checked')?.value === correctAnswers.question1) score++;
+        if (document.querySelector('input[name="question2"]:checked')?.value === correctAnswers.question2) score++;
+        if (document.querySelector('input[name="question3"]:checked')?.value === correctAnswers.question3) score++;
+        if (document.querySelector('input[name="question4"]:checked')?.value === correctAnswers.question4) score++;
+
+        const checkedCheckboxes = Array.from(document.querySelectorAll('input[name="question5"]:checked'));
+        const selectedValues = checkedCheckboxes.length > 0 ? checkedCheckboxes.map(el => el.value).sort().toString() : "";
+        if (selectedValues === correctAnswers.question5.sort().toString()) score++;
+
+        if (document.querySelector('input[name="question6"]:checked')?.value === correctAnswers.question6) score++;
+        if (document.querySelector('input[name="question7"]:checked')?.value === correctAnswers.question7) score++;
+
+        const percentage = (score / totalQuestions) * 100;
+
+        let message = `Вы набрали ${percentage.toFixed(2)}%. `;
+        if (percentage < 50) {
+            message += "Вы плохо знаете теоретическую часть предмета.";
+        } else {
+            message += "Вы хорошо знаете теоретическую часть предмета.";
+        }
+
+       document.getElementById('theoreticalResult').textContent = message;
+         localStorage.setItem('theoreticalResult', JSON.stringify({ score: score, percentage: percentage }));
+              window.location.href = 'practical_test.html';
+    });
+</script>
